@@ -9,8 +9,7 @@ from PySide6.QtGui import QPixmap
 def search():
     url = "https://goweather.herokuapp.com/weather"
     city = window.search_box.text()
-    payload = {}
-    headers = {}
+   
 
     try:
         response = requests.get(f"{url}/{city}")
