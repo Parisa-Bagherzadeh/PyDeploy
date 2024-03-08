@@ -7,5 +7,5 @@ python weather_api.py
 ```  
 <br>  
 
-![img](output/output.png)
+![img](output/result.png)
 
