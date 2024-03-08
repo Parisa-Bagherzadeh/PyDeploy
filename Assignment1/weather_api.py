@@ -16,10 +16,6 @@ def search():
         response.raise_for_status()
     except requests.exceptions.HTTPError as errh:
         print(f"HTTP Error occurred: {errh}")  
-        image = QPixmap("partly_cloudy.png")
-        window.lbl_icon.setPixmap(image)
-
-
     except requests.exceptions.RequestException as err:
         print(f"An error occurred: {err}")    
     else:
