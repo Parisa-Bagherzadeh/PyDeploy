@@ -4,6 +4,8 @@ This Weather API provides a simple and easy-to-use interface for retrieving weat
 ### Usage  
 ```
 python weather_api.py
-```
+```  
+<br>  
+
 ![img](output/output.png)
 
