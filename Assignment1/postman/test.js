@@ -1,5 +1,5 @@
 var settings = {
-    "url": "https://alquran.cloud/api",
+    "url": "https://thispersondoesnotexist.com/",
     "method": "GET",
     "timeout": 0,
   };
