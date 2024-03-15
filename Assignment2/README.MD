@@ -15,3 +15,9 @@ Illusion Diffusion provides APIs for generating optical illusions and image tran
 
 ### 4. PlantNet
 PlantNet is an application and API for plant identification and classification.
+
+
+## Usage  
+```
+python plantnet.py --flower_name FLOWERNAME  (default = orchid)
+```

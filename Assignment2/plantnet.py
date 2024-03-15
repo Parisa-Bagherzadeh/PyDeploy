@@ -46,20 +46,21 @@ def plantnet():
         }
 
     files = {
-        "images" : open("IllusionDiffusion_output/flower.jpg", "rb")
+        "images" : open("IllusionDiffusion_output/orchid.jpg", "rb")
     }
     try:
         response = requests.post(url, headers = headers, params = payload, files = files)
         response.raise_for_status
     except requests.exceptions.HTTPError as errh:
-        print(f"HTTP Error occurred: {errh}")     
+        return errh    
     except requests.exceptions.RequestException as err:
-        print(f"An error occurred: {err}")        
+        return err       
     else:    
-        # print(response.status_code)
         flower_name = response.json().get('results')[0]
         flower_name = flower_name['species']['commonNames']
         return flower_name
+
+
 
 if __name__ == "__main__" : 
 
@@ -72,15 +73,14 @@ if __name__ == "__main__" :
     if result:
         image = result["image"]
         image_url = image['url']
-        # print(image_url)
      
         response = requests.get(image_url)
         if response.status_code == 200:
-            with open("IllusionDiffusion_output/flower.jpg", "wb") as file:
+            with open("IllusionDiffusion_output/orchid.jpg", "wb") as file:
                 file.write(response.content)
                 print("Image downloaded successfully")
                 flower_name = plantnet()
-                print(flower_name)
+                print("Flower name  : ", flower_name)
         else:
             print("Failed to download image")
 
