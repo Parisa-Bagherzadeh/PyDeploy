@@ -39,5 +39,10 @@ Example :
 ```  
 <img src="images/sonbol.jpg" alt="Sample Image" style="width:300px;height:300px;">  
 
+```
+127.0.0.1:8000/pieces/سکه/image
+```  
+<img src="images/seke.jpg" alt="Sample Image" style="width:300px;height:300px;">  
+
 
 #### All images have been created by fal.ai website :)
