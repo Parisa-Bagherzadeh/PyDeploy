@@ -17,16 +17,16 @@ uvicorn main:app
 ```  
 The base URL of the API endpoints is : 127.0.0.1:8000  
 #### Endpoints  
-1 - 127.0.0.1:8000/sins  
+##### 1 - 127.0.0.1:8000/sins  
 This endpoint provides a list of all seven symbolic items of Haftsin  
 
-2 - 127.0.0.1:8000/sins/{sin_name}
+##### 2 - 127.0.0.1:8000/sins/{sin_name}
 Instead of sin_name you can type any of haftsin symbols, it will return the description of the symbol  
 Example :  
 ```
 127.0.0.1:8000/sins/سیب
 ```
-3 - 127.0.0.1:8000/pieces/{piece_name}/image  
+##### 3 - 127.0.0.1:8000/pieces/{piece_name}/image  
   Instead of piece_name you can type any of haftsin symbols and it will return the image of that symbol  
 Example : 
 ```
