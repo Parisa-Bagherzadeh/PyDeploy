@@ -2,7 +2,8 @@
 ## Haftsin API 
 Welcome to the Haftsin API documentation! This API celebrates the rich cultural tradition of Nowruz, the Persian New Year, through the symbolic items of the Haftsin table. Haftsin, meaning "seven S's" in Persian, is a tabletop arrangement of seven symbolic items, each starting with the letter 'S' in the Persian alphabet, representing various elements of life and nature.
 
-Through this API, you can explore and learn about these items, accompanied by images for a visual representation.
+Through this API, you can explore and learn about these items, accompanied by images for a visual representation.  
+The API have benn deployed here https://pydeploy-70jp.onrender.com
 
 ### Getting Started  
 First you need to run this commnad in terminal to start the api 
