@@ -26,6 +26,7 @@ Example :
 ```
 127.0.0.1:8000/pieces/سیب/image
 ```  
-![Sample Image](images/sib.jpg)  
+<img src="images/sib.jpg" alt="Sample Image" style="width:300px;height:300px;">
+ 
 
 #### All images have been created by fal.ai website :)
