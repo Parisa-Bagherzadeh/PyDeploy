@@ -26,7 +26,11 @@ Example :
 ```
 127.0.0.1:8000/pieces/سیب/image
 ```  
-<img src="images/sib.jpg" alt="Sample Image" style="width:300px;height:300px;">
- 
+<img src="images/sib.jpg" alt="Sample Image" style="width:300px;height:300px;">  
+```
+127.0.0.1:8000/pieces/سنبل/image
+```  
+<img src="images/sonbol.jpg" alt="Sample Image" style="width:300px;height:300px;">  
+
 
 #### All images have been created by fal.ai website :)
