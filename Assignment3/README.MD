@@ -26,11 +26,11 @@ Example :
 ```
 127.0.0.1:8000/sins/سیب
 ```
-##### 3 - 127.0.0.1:8000/pieces/{piece_name}/image  
+##### 3 - 127.0.0.1:8000/sins/{sin_name}/image  
   Instead of piece_name you can type any of haftsin symbols and it will return the image of that symbol  
 Example : 
 ```
-127.0.0.1:8000/pieces/سیب/image
+127.0.0.1:8000/sins/سیب/image
 ```  
 <img src="images/sib.jpg" alt="Sample Image" style="width:300px;height:300px;">  
 
@@ -39,10 +39,6 @@ Example :
 ```  
 <img src="images/sonbol.jpg" alt="Sample Image" style="width:300px;height:300px;">  
 
-```
-127.0.0.1:8000/pieces/سکه/image
-```  
-<img src="images/seke.jpg" alt="Sample Image" style="width:300px;height:300px;">  
-
+ 
 
 #### All images have been created by fal.ai website :)

@@ -38,33 +38,33 @@ def sininfo(sin_name : str):
         raise HTTPException(status_code = status.HTTP_400_BAD_REQUEST,
                             detail = "لطفا فقط هفت سین را وارد کنید ")
 
-@app.get("/pieces/{piece_name}/image")                
-def sin_image(piece_name):
-    if piece_name == "سیب":
+@app.get("/sins/{sin_name}/image")                
+def sin_image(sin_name):
+    if sin_name == "سیب":
         image = cv2.imread("images/sib.jpg")
         _, encoded_image = cv2.imencode(".png", image)
         return StreamingResponse(io.BytesIO(encoded_image.tobytes()), media_type = "image/jpg")
-    elif piece_name == "سرکه":
+    elif sin_name == "سرکه":
         image = cv2.imread("images/serkeh.jpg")
         _, encoded_image = cv2.imencode(".png", image)
         return StreamingResponse(io.BytesIO(encoded_image.tobytes()), media_type = "image/jpg")
     
-    elif piece_name == "سکه":
+    elif sin_name == "سکه":
         image = cv2.imread("images/seke.jpg")
         _, encoded_image = cv2.imencode(".png", image)
         return StreamingResponse(io.BytesIO(encoded_image.tobytes()), media_type = "image/jpg")
     
-    elif piece_name == "سیر":
+    elif sin_name == "سیر":
         image = cv2.imread("images/sir.jpg")
         _, encoded_image = cv2.imencode(".png", image)
         return StreamingResponse(io.BytesIO(encoded_image.tobytes()), media_type = "image/jpg")
     
-    elif piece_name == "سماق":
+    elif sin_name == "سماق":
         image = cv2.imread("images/somagh.jpg")
         _, encoded_image = cv2.imencode(".png", image)
         return StreamingResponse(io.BytesIO(encoded_image.tobytes()), media_type = "image/jpg")
     
-    elif piece_name == "سنبل":
+    elif sin_name == "سنبل":
         image = cv2.imread("images/sonbol.jpg")
         _, encoded_image = cv2.imencode(".png", image)
         return StreamingResponse(io.BytesIO(encoded_image.tobytes()), media_type = "image/jpg")
