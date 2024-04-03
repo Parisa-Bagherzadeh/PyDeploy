@@ -14,5 +14,5 @@ The base URL of the API endpoints is : 127.0.0.1:8000
 #### Endpoints  
 * GET /task: Retrieves all todo items.
 * POST /task: Creates a new todo item.
-* PUT /task/<id>: Updates an existing todo item by its ID.
-* DELETE /todos/<id>: Deletes a todo item by its ID.
+* PUT /task/id: Updates an existing todo item by its ID.
+* DELETE /task/id: Deletes a todo item by its ID.
