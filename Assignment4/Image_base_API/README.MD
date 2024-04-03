@@ -6,7 +6,7 @@ This API allows you to submit an image and detects faces within the image using 
 pip install -r requirements.txt
 ```  
 ### Getting Started  
-1 - Put your images in seperate folders in face_bank folder.
+1 - Put your images in seperate folders in face_bank folder.  
 2 - run the following command :  
 ```
 python create_face_bank.py
