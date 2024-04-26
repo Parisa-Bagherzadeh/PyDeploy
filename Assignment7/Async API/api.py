@@ -1,14 +1,16 @@
 import asyncio
 import time
 import requests
+import os
 
 
 
 
 async def rhyme_finder():
 
-    key = "6e61766964692e6d2e393140676d61696c2e636f6d"
-    word = input("Enter a word: ")
+    key = os.getenv("RHYME_KEY")
+    # word = input("Enter a word: ")
+    word = "رفت"
     url = f"https://rhyming.ir/api/rhyme-finder?api={key}&w={word}&sb=1&mfe=2&eq=1"
     response = requests.request("GET", url)
 
@@ -25,7 +27,8 @@ async def get_states():
 
 
     results = response.json()
-    name = input("Enter state's name: ")
+    # name = input("Enter state's name: ")
+    name = "اصفهان"
 
     for result in results:
         if result['name'] == name:
@@ -38,7 +41,8 @@ async def get_states():
 
 async def get_cities():
 
-    state_id = input("Enter state id: ")
+    # state_id = input("Enter state id: ")
+    state_id = 4
     url = f"https://iran-locations-api.vercel.app/api/v1/fa/cities?state_id={state_id}"
     response = requests.request("GET", url)
 
@@ -50,7 +54,8 @@ async def get_cities():
 
 
 
-    name = input("Enter name of your city: ")
+    # name = input("Enter name of your city: ")
+    name = "اصفهان"
 
     if result['name'] == name:
         print("Your city found :)")
