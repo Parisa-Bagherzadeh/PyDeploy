@@ -1,7 +1,5 @@
 # Async API  
 
-Async API Readme
-Introduction
 This Async API provides asynchronous endpoints for accessing various functionalities related to word rhyming and geographical information retrieval. It offers two distinct functionalities:
 
 1.Rhyme Finder: Allows users to find rhymes for a given word.  
