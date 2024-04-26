@@ -13,7 +13,11 @@ async def marraige(name):
 
 
 async def main():
-   await asyncio.gather(marraige("mamad"), marraige("gholi"), marraige("goli"),marraige("alex"))
+   #await waits to run all marriages after that main function is done 
+   #await = while
+   #asyncio.gather() runs multiple calls simultaneously
+
+    await asyncio.gather(marraige("mamad"), marraige("gholi"), marraige("goli"),marraige("alex"))
  
 
 if __name__ == "__main__":

@@ -9,7 +9,7 @@ async def marraige(name):
     global counter
     r = random.randint(0, 10)
     await asyncio.sleep(r)
-    print(f"{name} married in after {r} years")
+    print(f"{name} married  after {r} years")
     counter +=1
 
 
@@ -19,6 +19,11 @@ async def main():
 
     while counter < 4:
         await asyncio.sleep(1)
+
+    # while True:
+    #     await asyncio.sleep(1)
+
+
 
 if __name__ == "__main__":
     start_time = time.perf_counter()
