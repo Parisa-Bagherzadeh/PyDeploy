@@ -3,7 +3,7 @@ import pandas as pd
 import matplotlib.pyplot as plt
 
 
-st.header("Data science App")
+st.header("🎥Top Movies App")
 uploaded_file = st.file_uploader("Upload a csv file 📃", type=["csv"])
 
 if uploaded_file is not None:
