@@ -17,59 +17,60 @@ async def rhyme_finder():
     print(response.json())
     
 
-async def get_states():
+def get_states():
     
     url = "https://iran-locations-api.vercel.app/api/v1/fa/states"
     response = requests.request("GET", url) 
 
     print("List of satets --------------------")
-    print(response.json())
+    states = response.json()
+    print(states)
 
 
-    results = response.json()
-    # name = input("Enter state's name: ")
-    name = "اصفهان"
+    name = "گلستان"
 
-    for result in results:
-        if result['name'] == name:
-            print(result['id'])
+    for state in states:
+        if state['name'] == name:
+            print(state['id'])
+            state_id = state['id']
+
+    return state_id        
 
 
+def get_cities(state_id):
 
-
-    
-
-async def get_cities():
-
-    # state_id = input("Enter state id: ")
-    state_id = 4
+    print("State_id : ", state_id)
     url = f"https://iran-locations-api.vercel.app/api/v1/fa/cities?state_id={state_id}"
     response = requests.request("GET", url)
 
-    print("List of cities-------------------------")
-    print(response.json())
 
-    result = response.json()
+    cities = response.json()
 
+    print("List of cities---------------", cities)
 
+    name = "گرگان"
 
+    for city in cities['cities']:
 
-    # name = input("Enter name of your city: ")
-    name = "اصفهان"
+        print(city['name'])
+        
+        if city['name'] == name:
 
-    if result['name'] == name:
-        print("Your city found :)")
+            print("Your city found :)")
+            print("Latitude : ", cities['latitude'])
+            print("Longitude : ", cities['longitude'])
 
-        print("Latitude : ", result['latitude'])
-        print("Longitude : ", result['longitude'])
+            break
     else:
         print("Not found")    
 
-            
+                
 
 
 async def get_coordinates():
-    await asyncio.gather(get_states(),get_cities())
+    state_id = get_states()
+    get_cities(state_id)
+    
 
 
 
