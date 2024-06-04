@@ -53,7 +53,7 @@ def get_cities(state_id):
     for city in cities['cities']:
 
         print(city['name'])
-        
+
         if city['name'] == name:
 
             print("Your city found :)")
