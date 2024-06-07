@@ -44,28 +44,28 @@ def login():
             return redirect(url_for("login"))
 
 
-# @app.route("/upload", methods=["GET", "POST"])
-# def upload():
-#     if request.method == "GET":
-#         return render_template("upload.html")
-#     elif request.method == "POST":
-#         my_image = request.files['image']
-#         if my_image.filename == "":
-#             return redirect(url_for("upload"))
-#         else:
-#             if my_image and allowed_file(my_image):
-#                 save_path = os.path.join(app.config["UPLOAD_FOLDER"], my_image.filename)
-#                 my_image.save(save_path)
-#                 result = DeepFace.analyze(
-#                 img_path = save_path,
-#                 actions= ['age']
-#             )
+@app.route("/upload", methods=["GET", "POST"])
+def upload():
+    if request.method == "GET":
+        return render_template("upload.html")
+    elif request.method == "POST":
+        my_image = request.files['image']
+        if my_image.filename == "":
+            return redirect(url_for("upload"))
+        else:
+            if my_image and allowed_file(my_image):
+                save_path = os.path.join(app.config["UPLOAD_FOLDER"], my_image.filename)
+                my_image.save(save_path)
+                result = DeepFace.analyze(
+                img_path = save_path,
+                actions= ['age']
+            )
             
 
-#             age = result[0]['age']
-#             print(age)
+            age = result[0]['age']
+            print(age)
             
-#         return render_template("result.html", age=result[0]['age'])
+        return render_template("result.html", age=result[0]['age'])
  
 
 
