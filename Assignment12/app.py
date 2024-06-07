@@ -84,4 +84,4 @@ def cal_bmr():
         else:
             return redirect(url_for("cal_bmr"))
         
-    return f"🗒 Your BMR is {bmr}"        
+    return f"🧮 Your BMR is {bmr}"        
