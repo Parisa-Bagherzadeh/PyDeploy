@@ -1,0 +1,22 @@
+.px-btn {
+	padding: 15px 35px;
+	display: inline-flex;
+	align-items: center;
+	justify-content: center;
+	background-color: var(--px-theme);
+	color: var(--px-theme-text);
+	text-decoration: none;
+	border-radius: 10px;
+	transition: ease all 0.35s;
+	font-weight: 500;
+	outline: none;
+	box-shadow: none;
+	border: 2px solid var(--px-theme);
+	i {
+		margin-left: 10px;
+	}
+	&:hover {
+		background-color: var(--px-theme-text);
+		color: var(--px-theme);
+	}
+}

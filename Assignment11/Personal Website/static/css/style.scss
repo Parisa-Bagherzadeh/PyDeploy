@@ -1,0 +1,34 @@
+/*------------------------------------------------------------------
+Project:    Tapsi Personal Portfolio
+Version:    1.0
+Primary use:    pxdraft
+
+[Table of contents]
+
+1. Body
+2. Header
+3. Footer
+4. Blog
+5. Section
+6. Home Banner
+7. About
+8. Services
+9. Portfolio
+10. Testimonial
+11. Contact Us
+
+-------------------------------------------------------------------*/
+@import "../vendor/owl-carousel/css/owl.carousel.min.css";
+@import "../vendor/magnific/magnific-popup.css";
+
+
+@import "scss/variable";
+@import "scss/mixin";
+@import "scss/root";
+@import "scss/header";
+@import "scss/footer";
+@import "scss/button";
+@import "scss/color";
+@import "scss/base";
+@import "scss/style";
+

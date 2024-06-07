@@ -1,0 +1,153 @@
+@media (prefers-reduced-motion: no-preference) {
+    :root {
+        scroll-behavior: inherit;
+    }
+}
+
+
+
+img {
+    max-width: 100%;
+}
+
+* {
+    outline: none !important;
+}
+
+
+/* ----------------------
+*   Loading
+---------------------------*/
+#loading {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    //background: $px-theme;
+    z-index: 99999;
+}
+
+.load-circle {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    margin: auto;
+    width: 50px;
+    height: 50px;
+
+    span {
+        display: inline-block;
+        width: 64px;
+        height: 64px;
+
+        &:after {
+            content: " ";
+            display: block;
+            width: 46px;
+            height: 46px;
+            margin: 1px;
+            border-radius: 50%;
+            animation: lds-dual-ring 1.2s linear infinite;
+        }
+    }
+}
+
+@keyframes lds-dual-ring {
+    0% {
+        transform: rotate(0deg);
+    }
+
+    100% {
+        transform: rotate(360deg);
+    }
+}
+
+
+.dropdown-menu {
+    --bs-dropdown-bg:   var(--px-gray-3);
+    --bs-tertiary-bg:   var(--px-gray-2);
+    --bs-dropdown-link-active-bg:   var(--px-theme);
+    --bs-dropdown-link-active-color:   var(--px-theme-text);
+}
+
+
+/* Section
+---------------------*/
+.section {
+    padding: 100px 0;
+    position: relative;
+}
+
+@include down-lg {
+    .section {
+        padding-top: 80px;
+        padding-bottom: 80px;
+    }
+}
+
+@include down-sm {
+    .section {
+        padding-top: 60px;
+        padding-bottom: 60px;
+    }
+}
+
+.section-heading {
+    padding-bottom: 45px;
+    h3 {
+        position: relative;
+        display: inline-block;
+        vertical-align: top;
+        padding-right: 45px;
+        font-size: 40px;
+        font-weight: 600;
+        margin: 0;
+        padding-bottom: 10px;
+        text-transform: uppercase;
+        @include down-sm {
+            font-size: 32px;
+        }
+        &:after {
+            content: "";
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 60px;
+            height: 3px;
+            background-color: var(--px-theme);
+        }
+    }
+    i {
+        position: absolute;
+        top: -14px;
+        right: 0;
+        svg {
+            width: 34px;
+            height: auto;
+        }
+    }
+}
+
+.title-01 {
+    font-size: 20px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    position: relative;
+    padding-left: 20px;
+    color: var(--bs-heading-color);
+    margin-bottom: 30px;
+    &:after {
+        content: "";
+        position: absolute;
+        top: 10px;
+        left: 0;
+        width: 8px;
+        height: 8px;
+        background: var(--px-theme);
+    }
+}
+

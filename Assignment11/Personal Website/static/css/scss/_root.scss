@@ -1,0 +1,41 @@
+:root, 
+[data-bs-theme=light] {
+	--px-theme:	#{$theme};
+	--px-theme-text:	#{$theme-text};
+	
+
+
+	--px-bg:			#{$bg};
+	--px-text:			#{$text};
+	
+	
+	--px-gray-1:		#{$gray-1};
+	--px-gray-2:		#{$gray-2};
+	--px-gray-3:		#{$gray-3};
+	--px-gray-4:		#{$gray-4};
+	--px-gray-5:		#{$gray-5};
+
+	--px-border:		#{$border};
+
+	--bs-heading-color:	#{$text-heading};
+}
+
+[data-bs-theme=dark] {
+	--px-theme:			#{$dark-theme};
+	--px-theme-text:	#{$dark-theme-text};
+
+
+	--px-bg:			#{$dark-bg};
+	--px-text:			#{$dark-text};	
+	
+
+	--px-gray-1:		#{$dark-gray-1};
+	--px-gray-2:		#{$dark-gray-2};
+	--px-gray-3:		#{$dark-gray-3};
+	--px-gray-4:		#{$dark-gray-4};
+	--px-gray-5:		#{$dark-gray-5};
+
+	--px-border:		#{$dark-border};
+
+	--bs-heading-color:	#{$dark-text-heading};
+}
