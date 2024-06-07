@@ -3,8 +3,7 @@ from flask import Flask, render_template, request, redirect,session,url_for
 from deepface import DeepFace
 import cv2
 
-
-app = Flask("Analyze Face")
+app = Flask("app")
 app.config["UPLOAD_FOLDER"] = './uploads'
 app.config["ALLOWED_EXTENSIONS"] = {'png', 'jpg', 'jpeg'}
 
@@ -57,16 +56,32 @@ def upload():
                 img_path = save_path,
                 actions= ['age']
             )
+            
 
             age = result[0]['age']
             print(age)
             
-
-     
         return render_template("result.html", age=result[0]['age'])
  
 
 
-# @app.route("/result")
-# def result():
-#     return render_template("result.html")
+@app.route("/bmr", methods=["GET", "POST"])
+def cal_bmr():
+
+    if request.method == "GET":
+        return render_template("bmr.html")
+    else:
+        height = float(request.form["height"])
+        weight = float(request.form["weight"])
+        age = float(request.form["age"])
+        gender = str(request.form["gender"])
+
+
+        if gender == "female":
+            bmr = (10 * weight) + (6.25 * height) - (5 * age) - 161
+        elif gender == "male":
+            bmr = (10 * weight) + (6.25 * height) - (5 * age) + 5 
+        else:
+            return redirect(url_for("cal_bmr"))
+        
+    return f"🗒 Your BMR is {bmr}"        
