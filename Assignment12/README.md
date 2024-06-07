@@ -2,7 +2,7 @@
 This is a simple face analysis and BMR app using flask  
 #### How to install  
 ```
-requirements.txt
+pip install -r requirements.txt
 ```
 #### Usage  
 ```
