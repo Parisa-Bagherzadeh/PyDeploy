@@ -1,0 +1,51 @@
+{% extends 'layout.html' %}   
+
+{% block title %}
+
+Register and login
+
+{% endblock %}
+
+{% block content %}  
+<div class = "row justify-content-center">
+  <div class="col-4">
+      <div class="card text-bg-success mb-3">
+          <div class="card-header">Header</div>
+          <div class="card-body">
+
+        <!-- <h1>Login</h1>  
+
+        <ul class="nav nav-tabs">
+          <li class="nav-item">
+            <a class="nav-link active" aria-current="page" href="#">Login</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#">Register</a>
+          </li> 
+        </ul>  -->
+        
+       
+            <form method="post">
+              <div class="mb-3">
+                <label class="form-label">Username</label>
+                <input type="text" class="form-control" name="username">
+              </div>
+              <div class="mb-3">
+                <label class="form-label">Password</label>
+                <input type="password" class="form-control" name="password">
+              </div>
+              <div class="mb-3">
+                <label class="form-label">Confirm Password</label>
+                <input type="password" class="form-control" name="confirm_password">
+              </div>
+              <div class="mb-3 form-check">
+                <input type="checkbox" class="form-check-input" id="exampleCheck1">
+                <label class="form-check-label" for="exampleCheck1">Check me out</label>
+              </div>
+              <button type="submit" class="btn btn-primary">Submit</button>
+            </form>
+          </div>
+        </div>
+    </div>
+</div>
+{% endblock %} 
