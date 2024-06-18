@@ -1,14 +1,15 @@
 import os
 import bcrypt
-from flask import Flask, render_template, request, redirect,session,url_for
+from flask import Flask, flash, render_template, request, redirect,session as flask_session, url_for
 from sqlmodel import Field, SQLModel, create_engine, Session, select
 from pydantic import BaseModel
 from datetime import datetime
-from ultralytics import YOLO
+# from ultralytics import YOLO
 # from deepface import DeepFace
 import cv2
 
 app = Flask("app")
+app.secret_key = "secret_key"
 app.config["UPLOAD_FOLDER"] = './uploads'
 app.config["ALLOWED_EXTENSIONS"] = {'png', 'jpg', 'jpeg'}
 
@@ -73,25 +74,32 @@ def login():
         try:
             login_model = LoginModel(
             username = request.form["username"],
-            password = bcrypt.hashpw(request.form["password"].encode('utf-8'),bcrypt.gensalt())
+            password = request.form["password"]
+            # password = bcrypt.hashpw(request.form["password"].encode('utf-8'),bcrypt.gensalt())
             
             )
             
         except:
-            print("Type error")
+            flash("Type error", "warning")
             return redirect(url_for("login"))
         
         with Session(engine) as db_session:
-            print("-----------------------------------------")
-            print(login_model.password)
-            statement = select(User).where(User.username == login_model.username).where(User.password == login_model.password)
-            result = db_session.exec(statement).first()
-
-        if result:
-            print("Welcome, you are logged in")
-            return redirect(url_for("upload"))
+    
+            # flash(login_model.password)
+            statement = select(User).where(User.username == login_model.username)
+            user = db_session.exec(statement).first()
+            
+        if user:
+            password_byte = login_model.password.encode("utf-8")
+            if bcrypt.checkpw(password_byte, user.password):
+                flash("Welcome, you are logged in", "success")
+                flask_session["user_id"] = user.id
+                return redirect(url_for("upload"))
+            else:
+                flash("Password is incorrect", "danger")
+                return redirect(url_for("login"))
         else:
-            print("Username or password is incorrect")
+            flash("Username is incorrect", "danger")
             return redirect(url_for("login"))
         
 
@@ -115,7 +123,7 @@ def register():
 
             )
         except:    
-            print("Type Error")   
+            flash("Type Error")   
             return redirect(url_for("register"))
 
         with Session(engine) as db_session:
@@ -124,10 +132,13 @@ def register():
 
         if not result:
             if register_data.password == register_data.confirm_password:
+                # password = register_data.password.encode("utf-8"),
+                # hashed_password = bcrypt.hashpw(password, bcrypt.gensalt())
         
                 with Session(engine) as db_session:
                     user = User(
                         username = register_data.username,
+                     
                         city = register_data.city,
                         password = bcrypt.hashpw(register_data.password.encode('utf-8'),bcrypt.gensalt()),
                         firstname = register_data.firstname,
@@ -140,45 +151,46 @@ def register():
                     db_session.add(user)
                     db_session.commit()
 
-                print("Registered done successfuly")  
+                flash("Registered done successfuly")  
                 return redirect(url_for("login"))  
             else:
-                print("Different passwords!")
+                flash("Different passwords!")
                 return redirect(url_for("register"))
         else:
-            print("Usrename already exist, try another username")  
+            flash("Usrename already exist, try another username")  
             return redirect(url_for("register"))            
 
 
 
 @app.route("/upload", methods=["GET", "POST"])
 def upload():
-    if request.method == "GET":
-        return render_template("upload.html")
-    elif request.method == "POST":
-        
+    if flask_session.get('user_id'):
+        if request.method == "GET":
+            return render_template("upload.html")
+        elif request.method == "POST":
 
-        my_image = request.files['image']
-        if my_image.filename == "":
-            return redirect(url_for("upload"))
-        else:
-            
-            if allowed_file(my_image.filename):
-                print(my_image.filename)
-                save_path = os.path.join(app.config["UPLOAD_FOLDER"], my_image.filename)
-                image = cv2.imread(save_path)
-                model = YOLO("yolov8n-cls.pt")
-
-                results = model.predict(image)
-              
-                
-                return render_template("result.html", result=results)
-
+            my_image = request.files['image']
+            if my_image.filename == "":
+                return redirect(url_for("upload"))
             else:
-                print("You are allowed to upload just images") 
-                return redirect(url_for("upload"))   
                 
-            
+                if allowed_file(my_image.filename):
+                    flash(my_image.filename)
+                    save_path = os.path.join(app.config["UPLOAD_FOLDER"], my_image.filename)
+                    image = cv2.imread(save_path)
+                    model = YOLO("yolov8n-cls.pt")
+
+                    results = model.predict(image)
+                
+                    
+                    return render_template("result.html", result=results)
+
+                else:
+                    flash("You are allowed to upload just images") 
+                    return redirect(url_for("upload"))   
+    else:
+        return redirect(url_for("index"))                   
+                
         
  
 
@@ -203,3 +215,13 @@ def cal_bmr():
             return redirect(url_for("cal_bmr"))
         
     return f"🧮 Your BMR is {bmr}"        
+
+@app.route("/logout")
+def logout():
+    flask_session.pop("user_id")
+    return redirect(url_for("index"))
+
+
+@app.route("/test")
+def test():
+    return render_template("test.html", a=2,b=3)

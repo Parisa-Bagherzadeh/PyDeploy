@@ -9,6 +9,16 @@ Register and login
 {% block content %}  
 <div class = "row justify-content-center">
   <div class="col-4">
+      {% with messages = get_flashed_messages(with_categories=True) %}
+        {% if messages %}
+          {% for acctegory, message in messages %}
+            <div class="alert alert-{{ category }}" role="alert">
+            {{ message }}
+            </div>
+            {% endfor %}
+          {% endif %}
+      {% endwith %}  
+
       <div class="card text-bg-success mb-3">
           <div class="card-header">Header</div>
           <div class="card-body">
@@ -34,10 +44,10 @@ Register and login
                 <label class="form-label">Password</label>
                 <input type="password" class="form-control" name="password">
               </div>
-              <div class="mb-3">
+              <!-- <div class="mb-3">
                 <label class="form-label">Confirm Password</label>
                 <input type="password" class="form-control" name="confirm_password">
-              </div>
+              </div> -->
               <div class="mb-3 form-check">
                 <input type="checkbox" class="form-check-input" id="exampleCheck1">
                 <label class="form-check-label" for="exampleCheck1">Check me out</label>
