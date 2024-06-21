@@ -4,7 +4,7 @@ from flask import Flask, flash, render_template, request, redirect,session as fl
 from sqlmodel import Field, SQLModel, create_engine, Session, select
 from pydantic import BaseModel
 from datetime import datetime
-# from ultralytics import YOLO
+from ultralytics import YOLO
 # from deepface import DeepFace
 import cv2
 
