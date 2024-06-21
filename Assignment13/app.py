@@ -48,12 +48,6 @@ class LoginModel(BaseModel):
     password: str
 
 
-# def auth(email,password):
-#     if email == "parisa@gmail.com" and password == "1234":
-#         return True
-#     else:
-#         return False
-    
 def allowed_file(filename):
     format = filename.split('.')[-1]
     if format == "jpg" or format == "png" or format == "jpeg":
@@ -132,8 +126,7 @@ def register():
 
         if not result:
             if register_data.password == register_data.confirm_password:
-                # password = register_data.password.encode("utf-8"),
-                # hashed_password = bcrypt.hashpw(password, bcrypt.gensalt())
+         
         
                 with Session(engine) as db_session:
                     user = User(
@@ -152,6 +145,7 @@ def register():
                     db_session.commit()
 
                 flash("Registered done successfuly")  
+                engine.dispose()
                 return redirect(url_for("login"))  
             else:
                 flash("Different passwords!")
@@ -222,6 +216,7 @@ def logout():
     return redirect(url_for("index"))
 
 
-@app.route("/test")
-def test():
-    return render_template("test.html", a=2,b=3)
+
+# @app.route("/test")
+# def test():
+#     return render_template("test.html", a=2,b=3)

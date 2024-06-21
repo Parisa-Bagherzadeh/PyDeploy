@@ -1,4 +1,4 @@
-### Face analysis and BMR App  
+### AI and BMR App  
 This is a simple AI and BMR app using flask  
 #### How to install  
 ```
