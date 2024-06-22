@@ -1,9 +1,7 @@
 {% extends 'layout.html' %}
-
 {% block title %}
   AI Service
 {% endblock %}
-
 {% block content %}
   {% with messages = get_flashed_messages(with_categories=True) %}
     {% if messages %}
@@ -14,7 +12,7 @@
         {% endfor %}
       {% endif %}
 {% endwith %}  
-        <h1>Upload an image of your face</h1>
+        <h1>Upload an image </h1>
         <form method="post" enctype="multipart/form-data">
             <div class="mb-3">
                 <label for="formFile" class="form-label">Default file input example</label>

@@ -3,7 +3,11 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    
+    <title>
+      {% block title %}
+      {% endblock %}
+    </title>
     <link rel="stylesheet" type="text/css" href="static/css/bootstrap.css">
     <meta name="viewport" content="width=device-width, inital-scale=1.0">
 </head> 
@@ -45,39 +49,11 @@
               </div>
             </div>
           </nav>
-        <h1>BMR</h1>  
 
-        <ul class="nav nav-tabs">
-          <li class="nav-item">
-            <a class="nav-link active" aria-current="page" href="#">BMR</a>
-          </li>
-          <!-- <li class="nav-item">
-            <a class="nav-link" href="#">Register</a>
-          </li> -->
-        </ul>
-        
-       
-          <form method="post">
-            <div class="mb-3">
-              <label class="form-label">Height</label>
-              <input type="text" class="form-control" name="height">
-            </div>
-            <div class="mb-3">
-              <label class="form-label">Weight</label>
-              <input type="weight" class="form-control" name="weight">
-            </div>
-            <div class="mb-3">
-                <label class="form-label">Age</label>
-                <input type="age" class="form-control" name="age">
-            </div>
-            <div class="mb-3">
-                <label class="form-label">Gender</label>
-                <input type="age" class="form-control" name="gender">
-            </div>
-            <button type="submit" class="btn btn-primary">Submit</button>
-          </form>
+        <!-- <h1>Welcome to my App 🗒</h1> -->
+         {% block content %}
+         {% endblock %}
     </div>
-
     <script src=""></script>
 </body>
     <div di=""></div>

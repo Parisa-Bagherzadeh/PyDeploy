@@ -167,7 +167,7 @@ def upload():
                     image = cv2.imread(save_path)
                     model = YOLO("yolov8n.pt")
                     results = model(image)
-                    return render_template("result.html", result=results)
+                    return render_template("result.html", results=results)
 
                 else:
                     flash("You are allowed to upload just images") 

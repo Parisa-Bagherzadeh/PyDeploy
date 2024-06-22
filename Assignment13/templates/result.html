@@ -7,7 +7,9 @@
 </head>
 <body>
     <p>
-       {{ result }} 
+       {% for result in results %}   
+           {{result.boxes}}
+        {% endfor %}
     </p>   
 </body>
 </html>

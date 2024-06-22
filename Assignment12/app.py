@@ -53,7 +53,7 @@ def upload():
         if my_image.filename == "":
             return redirect(url_for("upload"))
         else:
-            if my_image and allowed_file(my_image):
+            if my_image and allowed_file(my_image.filename):
                 save_path = os.path.join(app.config["UPLOAD_FOLDER"], my_image.filename)
                 my_image.save(save_path)
                 result = DeepFace.analyze(
