@@ -50,7 +50,7 @@ class LoginModel(BaseModel):
 
 def allowed_file(filename):
     format = filename.split('.')[-1]
-    if format == "jpg" or format == "png" or format == "jpeg":
+    if format in("jpeg", "png", "jpg"):
         return True
     else:
         return False
@@ -68,10 +68,7 @@ def login():
         try:
             login_model = LoginModel(
             username = request.form["username"],
-            password = request.form["password"]
-            # password = bcrypt.hashpw(request.form["password"].encode('utf-8'),bcrypt.gensalt())
-            
-            )
+            password = request.form["password"])
             
         except:
             flash("Type error", "warning")
@@ -126,12 +123,9 @@ def register():
 
         if not result:
             if register_data.password == register_data.confirm_password:
-         
-        
                 with Session(engine) as db_session:
                     user = User(
                         username = register_data.username,
-                     
                         city = register_data.city,
                         password = bcrypt.hashpw(register_data.password.encode('utf-8'),bcrypt.gensalt()),
                         firstname = register_data.firstname,
@@ -155,7 +149,6 @@ def register():
             return redirect(url_for("register"))            
 
 
-
 @app.route("/upload", methods=["GET", "POST"])
 def upload():
     if flask_session.get('user_id'):
@@ -172,11 +165,8 @@ def upload():
                     flash(my_image.filename)
                     save_path = os.path.join(app.config["UPLOAD_FOLDER"], my_image.filename)
                     image = cv2.imread(save_path)
-                    model = YOLO("yolov8n-cls.pt")
-
-                    results = model.predict(image)
-                
-                    
+                    model = YOLO("yolov8n.pt")
+                    results = model(image)
                     return render_template("result.html", result=results)
 
                 else:
@@ -186,8 +176,6 @@ def upload():
         return redirect(url_for("index"))                   
                 
         
- 
-
 
 @app.route("/bmr", methods=["GET", "POST"])
 def cal_bmr():
@@ -199,24 +187,17 @@ def cal_bmr():
         weight = float(request.form["weight"])
         age = float(request.form["age"])
         gender = str(request.form["gender"])
-
-
-        if gender == "female":
+        if gender.lower() == "female":
             bmr = (10 * weight) + (6.25 * height) - (5 * age) - 161
-        elif gender == "male":
+        elif gender.lower() == "male":
             bmr = (10 * weight) + (6.25 * height) - (5 * age) + 5 
         else:
             return redirect(url_for("cal_bmr"))
-        
-    return f"🧮 Your BMR is {bmr}"        
+    return f"🧮 Your BMR is {bmr}"   
+     
 
 @app.route("/logout")
 def logout():
     flask_session.pop("user_id")
     return redirect(url_for("index"))
 
-
-
-# @app.route("/test")
-# def test():
-#     return render_template("test.html", a=2,b=3)
