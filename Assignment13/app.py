@@ -75,8 +75,6 @@ def login():
             return redirect(url_for("login"))
         
         with Session(engine) as db_session:
-    
-            # flash(login_model.password)
             statement = select(User).where(User.username == login_model.username)
             user = db_session.exec(statement).first()
             
@@ -85,7 +83,8 @@ def login():
             if bcrypt.checkpw(password_byte, user.password):
                 flash("Welcome, you are logged in", "success")
                 flask_session["user_id"] = user.id
-                return redirect(url_for("upload"))
+                return redirect(url_for("profile"))
+               
             else:
                 flash("Password is incorrect", "danger")
                 return redirect(url_for("login"))
@@ -137,7 +136,6 @@ def register():
                     )
                     db_session.add(user)
                     db_session.commit()
-
                 flash("Registered done successfuly")  
                 engine.dispose()
                 return redirect(url_for("login"))  
@@ -149,29 +147,40 @@ def register():
             return redirect(url_for("register"))            
 
 
-@app.route("/upload", methods=["GET", "POST"])
+@app.route("/object-detection", methods=["GET", "POST"])
 def upload():
     if flask_session.get('user_id'):
         if request.method == "GET":
-            return render_template("upload.html")
+            return render_template("object-detection.html")
         elif request.method == "POST":
-
             my_image = request.files['image']
             if my_image.filename == "":
-                return redirect(url_for("upload"))
+                return redirect(url_for("object-detection"))
             else:
                 
                 if allowed_file(my_image.filename):
                     flash(my_image.filename)
                     save_path = os.path.join(app.config["UPLOAD_FOLDER"], my_image.filename)
                     image = cv2.imread(save_path)
+                    print(image)
+                    image = cv2.cvtColor(image, cv2.COLOR_BGR2RGB)
                     model = YOLO("yolov8n.pt")
-                    results = model(image)
-                    return render_template("result.html", results=results)
+                    results = model.predict(save=True, source=image)
+                    for result in results:
+                        boxes = result.boxes
+                        for box in boxes:
+                            coor = box.xyxy.tolist()
+                            x = int(coor[0][0])
+                            y = int(coor[0][1])
+                            w = int(coor[0][2]) - int(coor[0][0])
+                            h = int(coor[0][3]) - int(coor[0][1])
+                            new_image = image.copy()
+                            image_box = cv2.rectangle(new_image,(x, y), (w, h),(255, 0, 0), 2)
+                            cv2.imshow("Image", image_box)
 
                 else:
                     flash("You are allowed to upload just images") 
-                    return redirect(url_for("upload"))   
+                    return redirect(url_for("object-detection"))   
     else:
         return redirect(url_for("index"))                   
                 
@@ -179,7 +188,6 @@ def upload():
 
 @app.route("/bmr", methods=["GET", "POST"])
 def cal_bmr():
-
     if request.method == "GET":
         return render_template("bmr.html")
     else:
@@ -194,10 +202,44 @@ def cal_bmr():
         else:
             return redirect(url_for("cal_bmr"))
     return f"🧮 Your BMR is {bmr}"   
-     
+
+
+@app.route("/profile") 
+def profile():
+    return render_template("profile.html")    
+ 
+
+
+@app.route("/mind-reader", methods=["GET", "POST"])
+def mind_reader():
+    if request.method == "POST":
+        x = request.form["number"]
+        return redirect(url_for("mind_reader_result", number=x))
+    return render_template("mind-reader.html")
+
+
+@app.route("/mind-reader/result")
+def mind_reader_result():
+    y = request.args.get("number")
+    return render_template("mind-reader-result.html", number=y)
+
+
+@app.route("/pose-detection")
+def pose_detection():
+    if flask_session.get('user_id'):
+        return render_template("pose-detection.html")
+    else:
+        flash("You must login first")
+        return redirect(url_for("index"))
+
 
 @app.route("/logout")
 def logout():
-    flask_session.pop("user_id")
-    return redirect(url_for("index"))
+    if flask_session.get('user_id'):
+        flask_session.pop("user_id")
+        return redirect(url_for("index"))
+    else:
+        
+        return render_template("index.html")
+        flash("You have not logged in!")
 
