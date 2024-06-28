@@ -2,5 +2,5 @@ flask
 bcrypt
 sqlmodel
 opencv-python-headless
-# ultralytics
+ultralytics
 

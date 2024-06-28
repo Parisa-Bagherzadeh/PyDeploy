@@ -4,7 +4,7 @@ from flask import Flask, flash, render_template, request, redirect,session as fl
 from sqlmodel import Field, SQLModel, create_engine, Session, select
 from pydantic import BaseModel
 from datetime import datetime
-# from ultralytics import YOLO
+from ultralytics import YOLO
 # from deepface import DeepFace
 import cv2
 
@@ -147,42 +147,42 @@ def register():
             return redirect(url_for("register"))            
 
 
-# @app.route("/object-detection", methods=["GET", "POST"])
-# def upload():
-#     if flask_session.get('user_id'):
-#         if request.method == "GET":
-#             return render_template("object-detection.html")
-#         elif request.method == "POST":
-#             my_image = request.files['image']
-#             if my_image.filename == "":
-#                 return redirect(url_for("object-detection"))
-#             else:
+@app.route("/object-detection", methods=["GET", "POST"])
+def upload():
+    if flask_session.get('user_id'):
+        if request.method == "GET":
+            return render_template("object-detection.html")
+        elif request.method == "POST":
+            my_image = request.files['image']
+            if my_image.filename == "":
+                return redirect(url_for("object-detection"))
+            else:
                 
-#                 if allowed_file(my_image.filename):
-#                     flash(my_image.filename)
-#                     save_path = os.path.join(app.config["UPLOAD_FOLDER"], my_image.filename)
-#                     image = cv2.imread(save_path)
-#                     print(image)
-#                     image = cv2.cvtColor(image, cv2.COLOR_BGR2RGB)
-#                     model = YOLO("yolov8n.pt")
-#                     results = model.predict(save=True, source=image)
-#                     for result in results:
-#                         boxes = result.boxes
-#                         for box in boxes:
-#                             coor = box.xyxy.tolist()
-#                             x = int(coor[0][0])
-#                             y = int(coor[0][1])
-#                             w = int(coor[0][2]) - int(coor[0][0])
-#                             h = int(coor[0][3]) - int(coor[0][1])
-#                             new_image = image.copy()
-#                             image_box = cv2.rectangle(new_image,(x, y), (w, h),(255, 0, 0), 2)
-#                             cv2.imshow("Image", image_box)
+                if allowed_file(my_image.filename):
+                    flash(my_image.filename)
+                    save_path = os.path.join(app.config["UPLOAD_FOLDER"], my_image.filename)
+                    image = cv2.imread(save_path)
+                    print(image)
+                    image = cv2.cvtColor(image, cv2.COLOR_BGR2RGB)
+                    model = YOLO("yolov8n.pt")
+                    results = model.predict(save=True, source=image)
+                    for result in results:
+                        boxes = result.boxes
+                        for box in boxes:
+                            coor = box.xyxy.tolist()
+                            x = int(coor[0][0])
+                            y = int(coor[0][1])
+                            w = int(coor[0][2]) - int(coor[0][0])
+                            h = int(coor[0][3]) - int(coor[0][1])
+                            new_image = image.copy()
+                            image_box = cv2.rectangle(new_image,(x, y), (w, h),(255, 0, 0), 2)
+                            cv2.imshow("Image", image_box)
 
-#                 else:
-#                     flash("You are allowed to upload just images") 
-#                     return redirect(url_for("object-detection"))   
-#     else:
-#         return redirect(url_for("index"))                   
+                else:
+                    flash("You are allowed to upload just images") 
+                    return redirect(url_for("object-detection"))   
+    else:
+        return redirect(url_for("index"))                   
                 
         
 
@@ -239,7 +239,6 @@ def logout():
         flask_session.pop("user_id")
         return redirect(url_for("index"))
     else:
-        
         return render_template("index.html")
         flash("You have not logged in!")
 
