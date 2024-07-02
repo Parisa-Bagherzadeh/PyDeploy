@@ -240,5 +240,5 @@ def logout():
         return redirect(url_for("index"))
     else:
         return render_template("index.html")
-        flash("You have not logged in!")
+        
 
