@@ -1,4 +1,4 @@
-### AI and BMR App  
+### AI WebService 
 This is a wep API using AI services
 #### How to install  
 ```
