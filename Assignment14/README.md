@@ -1,10 +1,7 @@
 ## AI Services with Flask and Docker
 This is a Repository contains code for deploying AI services using Flask within a Docker container
 
-#### How to install  
-```
-pip install -r requirements.txt
-```
+
 #### Usage  
 Run the followigng commands:
 ```
