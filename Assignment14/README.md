@@ -8,8 +8,9 @@ pip install -r requirements.txt
 #### Usage  
 Run the followigng commands:
 ```
-1 - docker network create my_network
-2 - docker run --network my_network --name some-postgres -e POSTGRES_PASSWORD=password -e POSTGRES_USER=username -e POSTGRES_DB=database -d postgres
-3 - docker run -v $(pwd):/myapp -p 8080:5000 --network my_network 
+1 - docker build -t mywebsite .
+2 - docker network create my_network
+3 - docker run --network my_network --name some-postgres -e POSTGRES_PASSWORD=password -e POSTGRES_USER=username -e POSTGRES_DB=database -d postgres
+4 - docker run -v $(pwd):/myapp -p 8080:5000 --network my_network 
 ```
 
