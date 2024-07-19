@@ -1,0 +1,16 @@
+{% extends 'layout.html' %}
+
+{% block title %}
+Object Detection
+{% endblock %}
+
+{% block content %}
+    <p>
+       {% for result in results %} 
+        
+           {{result}}
+
+        {% endfor %}
+    </p>   
+
+{% endblock %}
