@@ -1,0 +1,25 @@
+flask
+fastapi
+uvicorn[standard]
+bcrypt
+sqlmodel
+opencv-python-headless
+pillow
+opencv-python
+numpy
+onnxruntime
+psycopg2
+pyyaml
+scikit-image
+# ultralytics
+
+# flask
+# bcrypt
+# sqlmodel
+# pillow
+# numpy
+# opencv-python
+# onnxruntime
+# pyyaml
+# psycopg2
+# scikit-image

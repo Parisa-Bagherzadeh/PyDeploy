@@ -1,0 +1,23 @@
+{%  extends "layout.html" %}
+
+{% block title %}
+Blog
+{% endblock%}
+
+
+{% block content %}
+<div class="row mt-4">
+    <div class="col-6">
+        <div class="list-group">
+            {% for topic in topics %}
+            <a href="/blog/{{ topic.id }}" class="list-group-item list-group-item-action" aria-current="true">
+              <div class="d-flex w-100 justify-content-between">
+                <h5 class="mb-1">{{ topic.title }}</h5>
+                <small>{{ topic.timestamp }}</small>
+              </div>
+              <p class="mb-1">{{ topic.text }}</p>
+            </a>
+            {% endfor %}
+          </div>
+    </div> 
+{% endblock %}

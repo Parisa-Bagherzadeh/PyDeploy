@@ -1,0 +1,68 @@
+{% extends 'layout.html' %}
+{% block title %}
+AI Service
+{% endblock %}
+{% block content %}
+{% with messages = get_flashed_messages(with_categories=True) %}
+{% if messages %}
+{% for acctegory, message in messages %}
+<div class="alert alert-{{ category }}" role="alert">
+  {{ message }}
+</div>
+{% endfor %}
+{% endif %}
+{% endwith %}
+<h1>Upload an image </h1>
+<form method="post" enctype="multipart/form-data">
+  <div class="mb-3">
+    <label for="formFile" class="form-label">Default file input example</label>
+    <input class="form-control" type="file" id="formFile" name="image">
+  </div>
+  <button type="submit" class="btn btn-primary">Submit</button>
+</form>
+
+
+{% for comment in comments %}
+    {{ comment.content }}
+{% endfor %} 
+
+
+<div class="row">
+  <div class="col">
+    <form method="post" action="/add-new-comment">
+      <div class="mb-3">
+        <label for="exampleFormControlTextarea1" class="form-label"></label>
+        <textarea class="form-control" id="editor" row="3"
+          name="comment">Your commnet...</textarea>
+      </div>
+      <button type="submit" class="btn btn-primary">Submit</button>
+    </form>
+  </div>
+</div>
+
+<script type="module">
+  import {
+    ClassicEditor,
+    Essentials,
+    Bold,
+    Italic,
+    Font,
+    Paragraph
+  } from 'ckeditor5';
+
+  ClassicEditor
+    .create(document.querySelector('#editor'), {
+      plugins: [Essentials, Bold, Italic, Font, Paragraph],
+      toolbar: {
+        items: [
+          'undo', 'redo', '|', 'bold', 'italic', '|',
+          'fontSize', 'fontFamily', 'fontColor', 'fontBackgroundColor'
+        ]
+      }
+    })
+    .then( /* ... */)
+    .catch( /* ... */);
+</script>
+
+
+{% endblock %}

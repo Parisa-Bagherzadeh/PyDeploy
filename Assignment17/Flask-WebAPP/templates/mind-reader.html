@@ -1,0 +1,24 @@
+{% extends 'layout.html' %}
+
+{% block title %}
+Mind reader
+{% endblock %}
+
+{% block content %}
+
+<div class="row justify-content-center mt-4">
+    <div class="col-3">
+        <label class="form-label">What number are you thinking of ?</label>
+        <div class="card border-primary mb-3" style="max-width: 18rem;">
+            <div class="card-header">
+                <div class="card-body text-primary">
+                    <form method="post">
+                        <input type="number" name="number" class="form-control">
+                        <button type="submit" class="btn btn-primary">Submit</button>
+                    </form>
+                </div>
+            </div>
+        </div>        
+    </div>
+</div>
+{% endblock %}

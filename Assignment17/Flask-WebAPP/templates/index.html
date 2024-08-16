@@ -1,0 +1,19 @@
+{% extends 'layout.html' %}
+
+{% block title %}
+Home
+{% endblock %}
+
+{% block content %}
+
+<div class="card text-bg-dark">
+        <!-- <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='/css/bootstrap.css') }}"> -->
+        <img src="{{ url_for('static',filename='images/banner.jpg') }}" class="card-img" alt="...">
+        <div class="card-img-overlay">
+                <h3 class="card-title">Welcome </h3>
+                <p class="card-text">Explore the AI world with just one click!</p>
+                <p class="card-text"></p>
+        </div>
+</div>
+
+{% endblock %}
