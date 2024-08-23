@@ -94,6 +94,9 @@ SQLModel.metadata.create_all(engine)
 #-d postgres
 
 
+DATABASE_URL = "postgresql://parisa:110@localhost:5432/postgres"
+engine = create_engine(DATABASE_URL, echo=True)
+
 
 # PyDantic models for request validation 
 class RegisterModel(BaseModel):

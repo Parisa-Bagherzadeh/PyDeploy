@@ -14,9 +14,11 @@ services:
 
 
 
-  ai_web_app:
-    image: mywebsite
-    container_name: mywebsite
+  object_detection:
+    image: object_detection
+    container_name: object_detection
+    build: 
+      context: ../Flask_Object_Detection
     networks:
       - my_network
     ports:
