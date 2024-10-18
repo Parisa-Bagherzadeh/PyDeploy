@@ -1,0 +1,27 @@
+version: "3.8"
+services:
+  backend: 
+    build: ./backend 
+    ports: 
+      - "8000:8000"
+    volumes:
+      - ./backend:/backend
+  ui:
+    build: ./ui
+    ports: 
+      - "8501:8501"
+    volumes:
+     - ./ui:/ui   
+  mongodb:
+    image: mongo
+    ports:
+      - "27017:27017"   
+  redis:
+    image: redis
+    ports:
+      - "6379:6379"
+  celery_worker:
+    build: ./backend
+    command: celery -A tasks worker --loglevel=info
+    depends_on:
+      - redis        

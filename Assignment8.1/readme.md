@@ -1,0 +1,2 @@
+## eKYC Project  
+The eKYC (Electronic Know Your Customer) project aims to streamline and automate the customer verification process for financial institutions and other businesses requiring identity validation. By utilizing advanced technologies like facial recognition, document verification, and secure data handling, eKYC enhances security, reduces onboarding time, and improves user experience. 
